@@ -197,14 +197,17 @@ if (($handle = fopen("record.csv", "r")) !== FALSE) {
     }
     fclose($handle);
 
-
     foreach($viskas as $value)
     {
         echo ":::::::::::::::\n";
-        echo "Name: ", $value[1], "Email: ",$value[2], "Phone: ",$value[3],"adress: ", $value[4],"Month: ", $value[5], "Day: ",$value[6], "TIme: ",$value[7];
+        echo "Name: ", $value[1], "Email: ",$value[2], "Phone: ",$value[3],"Adress: ", $value[4],"Month: ", $value[5], "Day: ",$value[6], "Time: ",$value[7];
     }
     start();
-}}
+}
+
+
+
+}
 
 
 
