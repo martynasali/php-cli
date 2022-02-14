@@ -80,7 +80,6 @@ function find_last_id (){
     return $row;
 }
 
-start();
 
 function edit_record () {
     echo "Enter ID of a record you want to edit\n";
@@ -179,6 +178,33 @@ if (($handle = fopen("record.csv", "r")) !== FALSE) {
     start();
 
 }}
+
+function sort_by_time($viskas){
+    $times = count($viskas);
+    $bigest_time = 24;
+    $save = 0;
+    $sorted = array();
+    
+    $i = 0;
+    $save_i = 0;
+    foreach($viskas as $key=>$value){
+        if($value[7] < $bigest_time){
+            $bigest_time = $value[7];
+            $save= $value;
+            $save_i = $key;
+        }
+    }
+    echo ":::::::::::::::\n";
+    echo "Name: ", $save[1], "Email: ",$save[2], "Phone: ",$save[3],"Adress: ", $save[4],"Month: ", $save[5], "Day: ",$save[6], "Time: ",$save[7];
+
+    unset($viskas[$save_i]);
+    if(count($viskas) != 0){
+        sort_by_time($viskas);
+    }
+
+    return $sorted;
+
+}
 function sort_by_date(){
     echo "Enter number of month\n";
     $month = fread(STDIN, 10);
@@ -197,17 +223,15 @@ if (($handle = fopen("record.csv", "r")) !== FALSE) {
     }
     fclose($handle);
 
-    foreach($viskas as $value)
-    {
-        echo ":::::::::::::::\n";
-        echo "Name: ", $value[1], "Email: ",$value[2], "Phone: ",$value[3],"Adress: ", $value[4],"Month: ", $value[5], "Day: ",$value[6], "Time: ",$value[7];
-    }
+    sort_by_time($viskas);
+
     start();
 }
-
-
-
 }
+
+
+start();
+
 
 
 
